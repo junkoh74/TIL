@@ -32,3 +32,16 @@ Class HelloWorld {
 
 [HakcerRank](<https://www.hackerrank.com/>)
 
+## Github Command
+
+1. cd : change directory
+   - cd .. : move up one directory
+   - cd folderName : move up to a folder
+2. mv : move
+   - mv filename foldername/ : move a file to a folder
+3. add : 
+   - git add . : ready files to upload
+4. commit : upload to local repository
+   - get commit -m "add existing file" : upload the file
+5. push : upload to remote repository
+6. pull or rebase 
