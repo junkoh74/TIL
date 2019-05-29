@@ -15,7 +15,8 @@ Here is how you would do it in Windows:
 6. Now that you have added your files and made your changes, you need to *commit* your changes so git can track them. Type `git commit -m "adding files"`. `-m` lets you add the *commit message* in line.
    1. to finalize uploading added file
    2. type **git commit -m "adding files"** 
-   3. -m : allows to add the commit message
+   3. or git commit -m .
+   4. -m : allows to add the commit message
 
 So far, the above steps is what you would do even if you were not using github. They are the normal steps to start a git repository. Remember that git is distributed (decentralized), means you don't need to have a "central server" (or even a network connection), to use git.
 
