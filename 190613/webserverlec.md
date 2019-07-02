@@ -97,3 +97,91 @@ getPost.html ----> GetPostServlet - GET.POST
  request.setCharacterEncoding("utf-8");
 ```
 
+
+
+## [ Review ]
+
+(1) HttpServlet 클래스를 상속
+(1-1) Tomcat (Web Server + Application Server 기능 : WAS -- Web Application Server)
+                      Coyote Server + Catalina Server (코요테 서버에서 모든 정보를 받고 카탈리나에 보내야 할지 아니면 웹으   					  로 보내야 할지 판단)
+				      doGet (), doPost () 주로 둘중 하나만 사용하지만 둘다 사용 가능, service()도 가능
+				      HttpServletRequest : 요청 정보를 추출 할 때 사용 (Query 는 클라이언트가 서버로 변환하여 보낼때 사용되  														는 문자열)
+				      HttpServletResponse : 응답과 관련하여 -- 응답 스트림 객체 사용, 컨텐트 타입 설정, 
+(2) 서블릿의 수행상의 특징
+(2-1) 서블릿은 한번 메모리 할당(객체생성)되면 할당된 상태를 계속 유지한다
+(2-2) 하나의 서블릿 객체를 공유하여 여러 클라이언트 요청을 처리한다 (Multi-Thread)
+		 각 시점맏 호출되는 매서드가 정해져 있다
+        	 객체 생성 후 실행 - init()
+        	 요청이 올 때마다 - service (), doGet(), doPost()
+			 객체 해제전 - destroy()
+(2-3) 쿼리 문자열 추출 방법
+		 name=value&name=value&name=value
+		 HttpServletRequest 객체의 getParameter()
+				String getParameter(String) : 리턴값이 value 값 또는 null 또는 " "
+		  	  String [] getParameteValues(String) : 여러개의 value를 return -- value값들의 배열 혹은 null
+		 GET 방식의 경우엔 Query 문자열 추출시 한글이 깨지지 않음
+		 POST 방식은 깨지기 때문에 --> request.setCharacterEncoding ("utf-8"); 을 설정하여 호출 한후 추출
+
+### 유용한 메서드
+
+getRequestURI()
+getRequestURL()
+getParameter(name)
+getParameterValues(name)
+getRemoteAddr() -- 클라이언트 IP조수 추출하여 사용자의 정보를 보고 싶을 시
+getServerName() -- 요청을 보내온 서버의 도메인 명을 추출 (*naver에서 타고 왔을 경우)
+
+sendRedirect(url) -- 요청을 재지정
+
+RequestDispatcher API = redirect 하는 API
+
+```java
+포워드(forward) 형식
+
+import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/forward")
+public class ForwardServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		System.out.println("ForwardServlet 수행");
+RequestDispatcher dis = request.getRequestDispatcher("/welcome.jsp");
+dis.forward(request, response); // forward로 request하면 welcome.jsp가 응답
+```
+
+
+
+```java
+리다이렉트 (redirect) 형식
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/redirect")
+public class RedirectServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		System.out.println("RedirectServlet 수행");
+//		response.sendRedirect("/sedu/welcome.jsp");
+        response.sendRedirect("http://www.naver.com/");
+	}
+}
+```
+
+포워드(Forward) 형식은 동일한 서버, 동일한 웹 프로젝트 내의 페이지만 재 연결 시킬수 있지만 리다이렉트(Redirect) 는 동일 서버/웹프로젝트 외의 페이지에도 재연결이 가능하다

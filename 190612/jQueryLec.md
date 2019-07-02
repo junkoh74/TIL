@@ -245,3 +245,23 @@ form 태그의 서브 태그들은 : val ()로 설정하지만 textarea 만큼�
         </div>
     </body>
     </html>
+
+
+## [  jQuery에서 Ajax 프로그래밍 지원 API  ]
+
+
+
+$.ajax(), $.get(), $.post(), $.getJSON()
+
+$(Ajax 요청으로 응답받은 내용을 추가하려는 부모 **<u>태그</u>**).load()
+
+
+
+응답이 일반 텍스트거나 html일 경우 $.()load()를 통하여 붙여넣기가 가능
+
+
+
+```html
+ $('#wrap').load('content/samplejson.txt');
+```
+

@@ -1,0 +1,24 @@
+
+1. servlet 구현할때 상속
+2. 쿼리 문자열 메소드
+3. 일정기간 동안 데이터를 보관하고 싶을 시 사용 하는 방식 (httpsession)
+4. get방식 할때, post방식 할때 overide하는 방식
+5. 쿼리문자열 잘못 왔을 때 리턴값
+6. get방식 요청시 특징
+7. 파일 업로드엔 어떤 여청 방식
+8. 객체 보관 용도 api(컨테이너 객체) - 3개
+9. jsp 내장 객체 문제 2문제
+10. 쿼리문자 추출 하는 elc
+11. session문자 삭제 매서드
+12. 서블릿 기술 특징 (틀린거 찾기)
+13. mvc패턴 abbreviation 각각 구현해야하는 부분
+14. 특정 scope영역에서 호출 -> el등
+15. mvc패턴의 장점 (요청, 응답 로직 따로따로, 전문적으로 개발 가능) => 유지 보수 up, 절대 코딩량은 비슷
+16. Spring IOC를 전반적인 설명하는 문제
+17. setter injection, constructor injection에서 사용 하는 태그
+18. annotation 종류
+19. spring mvc에서 프론트 컨트롤 역할의 설명
+20. 
+21. spring 환경을 만들 시 MAVEN의 역할 (개발 환경을 만들어 주는 파일중 설정 파일 이름 **디펜던시)
+22.
+23. jdbc개발 할 때 insert, select, update의 다른점
