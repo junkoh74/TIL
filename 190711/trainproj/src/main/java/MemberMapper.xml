@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="resource.NewsMapper">
+  	<insert id="register"  parameterType="vo.MemberVO">
+  			insert into member (user_id, email, passwd)
+    		values (#{user_id}, #{email}, #{passwd})
+	</insert>	
+	<!-- <update id="register"  parameterType="vo.Member.">
+    	update news set  
+				writer=#{writer} 
+				, title=#{title}
+				, content=#{content}
+		where id=#{id}
+	</update> -->
+	<!-- <delete id="deleteNews"  parameterType="_int"  >
+    	delete from news where id=#{id}
+	</delete> -->
+ 	<select id="login" parameterType="vo.MemberVO" resultType="_boolean"> <!-- listAll 형식 사용 서포트 -->
+    	select user_id
+    		, passwd
+    		 from member
+    		 where user_id = #{user_id}
+ 	</select>
+</mapper> 
